@@ -1,4 +1,4 @@
-Comments usually help you, but they can lie. Sometimes that lie will lead you down a wild goose chase to find something that doesn't exist. The JavaScript engine cannot validate comments so they have to always be taken at face value, so use them only when you need to.
+Comments usually help you, but they can lie. Sometimes that lie will lead you down a wild goose chase to find something that doesn't exist. The JavaScript engine cannot validate comments so they have to always be taken at face value. Use them only when you need to.
 <br />
 <br />
 Let's look at a small example. Not all of data in our ParentComponent gets passed into UserProfile, its child component. But at the same time, we want to make our code as readable and expressive as possible. There are multiple ways to approach this.
@@ -54,7 +54,7 @@ Your knee-jerk, non-ES6 choice. It's expressive, but quite lengthy. We can make 
 <br/>
 
 <span style="font-size: large;"><br /></span>
-<b><span style="font-size: large;">Option 2: Use spread operator on this.props in component</span></b>
+<b><span style="font-size: large;">Option 2: Use <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator">spread</a> operator on this.props in component</span></b>
 <pre data-codetype="auto"><code>//using birthday, name, description, and martialStatus
 &ltUserProfile {...this.props} /&gt
 </code></pre>
@@ -62,7 +62,7 @@ Very concise, but almost no expressiveness. It relies on a comment that may be o
 <br />
 <br/>
 <span style="font-size: large;"><br /></span>
-<b><span style="font-size: large;">Option 3: Object destructure assign this.props, use object literal shorthand to make new object, and spread new object into component</span></b>
+<b><span style="font-size: large;">Option 3: <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">Object destructure</a> assign this.props, use <a target="_blank" href="https://ariya.io/2013/02/es6-and-object-literal-property-value-shorthand">object literal shorthand</a> to make new object, and <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator">spread</a> new object into component</span></b>
 <pre data-codetype="auto"><code>const { birthday, name, description, martialStatus } = this.props
 const userProfileProps = { birthday, name, description, martialStatus }
 &ltUserProfile {...userProfileProps} /&gt

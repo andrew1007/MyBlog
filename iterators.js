@@ -1,18 +1,80 @@
-<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol" target="_blank">Symbols</a>&nbsp;were quietly added to ES6. As a web developer, they have low use cases. But <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator" target="_blank">Symbol.iterator</a>,&nbsp;embedded into certain object types, give developers access to ES6s new iterator.<br />
-<br />
-<b style="font-size: x-large;">The <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of" target="_blank">for...of</a>&nbsp;loop</b><br />
-This new loop is similar to <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach" target="_blank">.forEach</a>&nbsp;for arrays, but the main difference is that <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of" target="_blank">for...of</a> loops can be used on anything with a <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator" target="_blank">Symbol.iterator</a> attribute.<br />
-<pre data-codetype="auto"><code>for (let char of "console.logged character by character") {
-  console.log(char);
-}
-</code></pre>
-<pre data-codetype="auto"><code>new String()[Symbol.iterator] ? true : false // true
-new Array()[Symbol.iterator] ? true : false // true
-new Set()[Symbol.iterator] ? true : false // true
-new Map()[Symbol.iterator] ? true : false // true
-</code></pre>
-This means string, <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map" target="_blank">maps</a>, <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set" target="_blank">sets</a>, and arrays are all iteratable using <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of" target="_blank">for...of</a> loops.<br />
-<br />
+<p>
+  <a
+    target="_blank"
+    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">
+    Symbols
+  </a>
+   were quietly added to ES6. As a web developer, they have low use cases. But
+  <a
+    target="_blank"
+    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator">
+    Symbol.iterator
+  </a>
+   embedded into certain object types,
+  give developers access to ES6s new iterator.
+</p>
+
+<b><h2 style="margin-bottom:-5px">
+  The
+  <a
+    target="_blank"
+    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of">
+    for...of
+  </a>
+  loop
+</h2></b>
+
+<p>
+  This new loop is similar to
+  <a target="_blank"
+    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach">
+    .forEach
+  </a>
+   for arrays, but the main difference is that
+   <a target="_blank"
+     href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of" >
+     for...of
+   </a>
+    loops can be used on anything with a
+    <a target="_blank"
+      href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator">
+      Symbol.iterator
+    </a>
+    attribute.
+</p>
+
+<pre data-codetype="auto">
+  <code>for (let char of "console.logged character by character") {
+    console.log(char);
+  }</code>
+</pre>
+
+<pre data-codetype="auto">
+  <code>new String()[Symbol.iterator] ? true : false // true
+    new Array()[Symbol.iterator] ? true : false // true
+    new Set()[Symbol.iterator] ? true : false // true
+    new Map()[Symbol.iterator] ? true : false // true
+  </code>
+</pre>
+
+<p>
+  This means strings,
+  <a target="_blank"
+    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">
+    maps
+  </a>,
+  <a target="_blank"
+    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">
+    sets
+  </a>,
+  and arrays are all iteratable using
+  <a target="_blank"
+    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of">
+    for...of
+  </a>
+  loops.
+</p>
+
 <span style="font-size: large;"><b><a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from" target="_blank">Array.from</a> for objects that have a <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator" target="_blank">Symbol.iterator</a></b></span><br />
 <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from" target="_blank">Array.from</a> is essentially a "mapped" version of what a <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of" target="_blank">for...of loop</a> does.<br />
 <pre data-codetype="auto"><code>Array.from("string") //['s',&nbsp;'t',&nbsp;'r',&nbsp;'i',&nbsp;'n',&nbsp;'g'&nbsp;]
@@ -51,7 +113,7 @@ for (let [key, val] of sampleMap) {
 <span style="font-size: large;"><b>Performance</b></span><br />
 In its current state with transpilers, ES6 gets outperformed by raw ES5. In some cases <a target="_blank" href="http://incaseofstairs.com/2015/06/es6-feature-performance/" target="_blank">it's by a lot</a>. But in my opinion, it's usually worth it for cleanliness and maintainability. It also makes me think of this quote:<br />
 <blockquote>
-<a target="_blank" href="https://twitter.com/mraleph/status/411549064787152896?lang=en" target="_blank">Often devs still approach performance of JS code as if they are riding a horse cart but the horse had long been replaced with fusion reactor</a>
+<a target="_blank" href="https://twitter.com/mraleph/status/411549064787152896?lang=en" target="_blank">often devs still approach performance of JS code as if they are riding a horse cart but the horse had long been replaced with fusion reactor [<i>sic</i>]</a>
 </blockquote>
 Before I conclude, let me show you how to create an array of only unique values with the power of ES6:
 <br />

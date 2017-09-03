@@ -2,7 +2,8 @@
   Comments usually help you, but they can lie. Sometimes that lie will
   lead you down a wild goose chase to find something that doesn't exist.
   The JavaScript engine cannot validate comments so they have to always be
-  taken at face value. Use them only when you need to.
+  taken at face value. Use them only when you need to. Luckily, ES6 brings
+  some nice features to cleanly avoid comments when passing props into components.
 </p>
 <p>
   Let's look at a small example. Not all of data in our ParentComponent
@@ -12,40 +13,40 @@
 </p>
 
 <pre data-codetype="auto">
-  <code>import React, { Component } from 'react'
-    // ParentComponent props
-    // this.props = {
-    //   name: 'Andrew',
-    //   description: 'A person',
-    //   imageUrl: 'http://www.somewebsite.com/profile_picture.jpg',
-    //   age: 26,
-    //   height: '180cm',
-    //   birthday: '10.18.1990',
-    //   favoriteColor: 'blue',
-    //   martialStatus: 'single'
-    // }
-    export default class ParentComponent extends Component {
-      render() {
-        return (
-          &ltdiv&gt
-            &ltUserProfile/&gt {/*how should we pass the props we need in?*/}
-          &lt/div&gt
-        )
-      }
-    }
+<code>import React, { Component } from 'react'
+// ParentComponent props
+// this.props = {
+//   name: 'Andrew',
+//   description: 'A person',
+//   imageUrl: 'http://www.somewebsite.com/profile_picture.jpg',
+//   age: 26,
+//   height: '180cm',
+//   birthday: '10.18.1990',
+//   favoriteColor: 'blue',
+//   martialStatus: 'single'
+// }
+export default class ParentComponent extends Component {
+  render() {
+    return (
+      &ltdiv&gt
+        &ltUserProfile/&gt {/*how should we pass the props we need in?*/}
+      &lt/div&gt
+    )
+  }
+}
 
-    class UserProfile extends Component {
-      render() {
-        return (
-          &ltdiv&gt
-            { this.props.name }
-            { this.props.description}
-            birthday: { this.props.birthday }
-            martial status: {this.props.martialStatus}
-          &lt/div&gt
-        )
-      }
-    }</code>
+class UserProfile extends Component {
+  render() {
+    return (
+      &ltdiv&gt
+        { this.props.name }
+        { this.props.description}
+        birthday: { this.props.birthday }
+        martial status: {this.props.martialStatus}
+      &lt/div&gt
+    )
+  }
+}</code>
 </pre>
 
 <b><h2 style="margin-bottom:-17px">
@@ -53,12 +54,12 @@
 </h2></b>
 
 <pre data-codetype="auto">
-  <code>&ltUserProfile
-    birthday={this.props.birthday}
-    name={this.props.name}
-    description={this.props.description}
-    martialStatus={this.props.martialStatus}
-  /&gt</code>
+<code>&ltUserProfile
+  birthday={this.props.birthday}
+  name={this.props.name}
+  description={this.props.description}
+  martialStatus={this.props.martialStatus}
+/&gt</code>
 </pre>
 
 <p style="margin-top:-20px;margin-bottom:40px;">
@@ -67,7 +68,7 @@
 </p>
 
 <b><h2 style="margin-bottom:-17px">
-  Option 2: Use
+  Option 2: Use the
   <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator">
     spread
   </a>
@@ -75,8 +76,8 @@
 </h2></b>
 
 <pre data-codetype="auto">
-  <code>//using birthday, name, description, and martialStatus
-    &ltUserProfile {...this.props} /&gt</code>
+<code>//using birthday, name, description, and martialStatus
+&ltUserProfile {...this.props} /&gt</code>
 </pre>
 
 <p style="margin-top:-20px;margin-bottom:40px;">
@@ -99,17 +100,17 @@
   <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator">
     spread
   </a>
-  new object into component
+  the object into the component
 </h2></b>
 
 <pre data-codetype="auto">
-  <code>const { birthday, name, description, martialStatus } = this.props
-    const userProfileProps = { birthday, name, description, martialStatus }
-    &ltUserProfile {...userProfileProps} /&gt</code>
+<code>const { birthday, name, description, martialStatus } = this.props
+const userProfileProps = { birthday, name, description, martialStatus }
+&ltUserProfile {...userProfileProps} /&gt</code>
 </pre>
 
 <p style="margin-top:-20px;margin-bottom:40px;">
-  Sounds like a lot of work, but it's worth it. T
-  his style is just as expressive as option 1 and as concise as it gets.
+  Sounds like a lot of work, but it's worth it.
+  This style is just as expressive as option 1 and as concise as it gets.
   Good code speaks for itself.
 </p>

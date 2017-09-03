@@ -18,9 +18,11 @@
   <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all">
     Promise.all
   </a>
-  like a synchronous "checkpoint" and make sure all of the promises you ran
-  asynchronously (without await) end up being resolved by the time your code
-  actually needs them.
+  like a synchronous "checkpoint".
+  <pre data-codetype="auto"><code> await Promise.all</code></pre>
+  It accepts an array of promises and only returns a value after all promises are
+  resolved. This means you can pass in promises that are currently running that
+  will always resolve before the subsequent lines of code are run.
 </p>
 
 <b><h2 style="margin-bottom:-17px">
@@ -28,17 +30,17 @@
 </h2></b>
 
 <pre data-codetype="auto">
-  <code>const sendText = text =&gt; {
-    return new Promise(function(resolve, reject) {
-      setTimeout( _ =&gt; resolve(text), 2000)
-    })
-  }
+<code>const sendText = text =&gt; {
+  return new Promise(function(resolve, reject) {
+    setTimeout( _ =&gt; resolve(text), 2000)
+  })
+}
 
-  const chainText = (prevText, newText) =&gt; { //relies on value from sendText
-    return new Promise(function(resolve, reject) {
-      setTimeout( _ =&gt; resolve(prevText + newText), 2000)
-    })
-  }</code>
+const chainText = (prevText, newText) =&gt; { //relies on value from sendText
+  return new Promise(function(resolve, reject) {
+    setTimeout( _ =&gt; resolve(prevText + newText), 2000)
+  })
+}</code>
 </pre>
 
 <b><h2 style="margin-bottom:-17px">
@@ -46,12 +48,12 @@
 </h2></b>
 
 <pre data-codetype="auto">
-  <code>const chainedPromises = async () => {
-    const text = await sendText('Sally')
-    const chainedText = await chainText(text, ' loves dogs')
-    console.log(chainedText)
-    //4 seconds to finish
-  }</code>
+<code>const chainedPromises = async () => {
+  const text = await sendText('Sally')
+  const chainedText = await chainText(text, ' loves dogs')
+  console.log(chainedText)
+  //4 seconds to finish
+}</code>
 </pre>
 
 <b><h2 style="margin-bottom:-17px">
@@ -59,12 +61,12 @@
 </h2></b>
 
 <pre data-codetype="auto">
-  <code>const allSyncedPromises = async () => {
-    const text = await sendText('Sally')
-    const otherText = await sendText(' loves dogs') //doesn't rely on the above function
-    console.log(text + otherText)
-    //4 seconds to finish
-  }</code>
+<code>const allSyncedPromises = async () => {
+  const text = await sendText('Sally')
+  const otherText = await sendText(' loves dogs') //doesn't rely on the above function
+  console.log(text + otherText)
+  //4 seconds to finish
+}</code>
 </pre>
 
 <b><h2 style="margin-bottom:-17px">
@@ -72,13 +74,13 @@
 </h2></b>
 
 <pre data-codetype="auto">
-  <code>const parallelPromises = async () => {
-    const text = sendText('Sally')
-    const otherText = sendText(' loves dogs')
-    const [first, second] = await Promise.all([text, otherText])
-    //Promise.all + await, to ensure all promises are resolved before continuing
-    console.log(first + second)
-    //2 seconds to finish
-  }
-  </code>
+<code>const parallelPromises = async () => {
+  const text = sendText('Sally')
+  const otherText = sendText(' loves dogs')
+  const [first, second] = await Promise.all([text, otherText])
+  //Promise.all + await, to ensure all promises are resolved before continuing
+  console.log(first + second)
+  //2 seconds to finish
+}
+</code>
 </pre>

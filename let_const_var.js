@@ -28,10 +28,10 @@
 
 <pre data-codetype="auto">
 <code>const undefinedConsoleLog = _ => {
-  console.log(sadlyUndefined)
+  console.log(sadlyUndefined) //undefined
   var sadlyUndefined = 'declared by var, undefined where I console log'
   var isDefined = 'value assigned before console log'
-  console.log(isDefined)
+  console.log(isDefined) //'value assigned before console log'
 }</code>
 </pre>
 
@@ -48,7 +48,7 @@
 <code>const failedResponse = _ => {
   if ('this is a block'){
     let response = 'yes, this is a block'
-    console.log(response)
+    console.log(response) //'yes, this is a block'
   }
   console.log(response) //throws an error
 }</code>
@@ -71,12 +71,13 @@
 
 <pre data-codetype="auto">
 <code>const fixedResponse = _ => {
-  let response
+  let response //declared, and then initialized as undefined
+  console.log(response) //undefined
   if ('this is a block') {
     response = 'yes, this is a block'
-    console.log(response)
+    console.log(response) //'yes, this is a block'
   }
-  console.log(response)
+  console.log(response) //'yes, this is a block'
 }</code>
 </pre>
 
@@ -101,12 +102,12 @@
 
 <pre data-codetype="auto">
 <code>const hoistedAndInitialized = _ => {
-  console.log(initializedVar)
+  console.log(initializedVar) //undefined
   var initializedVar = 'declared and initialized as undefined on top'
 }
 
 const hoistedButNotInitialized = _ => {
-  console.log(uninitializedLet)
+  console.log(uninitializedLet) //ReferenceError: uninitializedLet is not defined
   let uninitializedLet = 'declared at the top, but not initialized. will throw error'
 }</code>
 </pre>
@@ -125,16 +126,17 @@ const hoistedButNotInitialized = _ => {
   if ('I use var') {
     var text = 'I am available anywhere in the function'
   }
-  console.log(text)
+  console.log(text) //'I am available anywhere in the function'
 }
 
 const alsoFunctionScoped = _ => {
   let text
   if ('I use let') {
-    text = 'I have been hoisted and initialized at the top.
-    function scope === block scope, in this case'
+    text = 'I have already been hoisted and initialized.
+    function scope === block scope'
   }
-  console.log(text)
+  console.log(text) //'I have already been hoisted and initialized.
+  // function scope === block scope'
 }</code>
 </pre>
 
@@ -150,9 +152,9 @@ const alsoFunctionScoped = _ => {
 <pre data-codetype="auto">
 <code>const innerTextIsNowBlockScopedAgain = _ => {
   let text
-  if ('I use let') {
-    let text = 'declared variable in this block now exists inside this inner scope only.'
+  if ('I declare with let inside this block') {
+    let text = 'exists inside this inner scope only.'
   }
-  console.log(text)
+  console.log(text) //undefined
 }</code>
 </pre>

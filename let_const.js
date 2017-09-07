@@ -1,6 +1,6 @@
 <p>
-  const and let have the same scoping rules. The difference between the two is the fact that
-  values assigned can never be change nor redeclared, but are mutable. Let can be changed
+  const and let have the same block scoping rules. The difference between the two is the fact that
+  const assignments can not be change nor redeclared, but are mutable. Let can be changed
   and redeclared.
 </p>
 

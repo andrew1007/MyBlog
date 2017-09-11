@@ -1,0 +1,117 @@
+<h2>
+  In React.js: <code style='font-size:20px;'>onClick={this.runFunction}</code>
+  &
+  <code style='font-size:20px;'>onClick={() => this.runFunction()}</code>
+  are fundamentally different
+</h2>
+
+<p>
+  Is this nerd clickbait? In fairness, I am not full of lies. Try it out yourself later
+  in a component, where
+  <code>this.runFunction</code> uses <code>this.setState</code>. The first will
+  throw an error. The other will not. There's a short explanation and a long one.
+  To someone who has no idea why these two are different, I think a long explanation
+  is in order.
+</p>
+
+<h2>
+  <code>function</code> and its <code>this</code> play by its own rules
+</h2>
+
+<p>
+  The defintion of context in a <code>function</code> does not obey lexical
+  scoping unless you tell it to. If you give it no declarations, it assumes
+  <code>this</code> is the window object.
+</p>
+
+<h2>
+  Strict declaration of context
+</h2>
+
+<pre data-codetype="auto"><code>this.myFunction // 'this' is my context, where my 'this' resulting declaration will obey lexical scoping
+
+function ConstructorExample() {
+
+  this.testAnonThis = function() { //this.testThis binds this function to my constructor's context
+    let anonThis = (function(){
+      return this
+    })() //anonymous function. THIS HAS NO BINDING. Remember, function is not lexically scoped.
+    console.log(`anonThis is the window object?: `${window === anonThis}``)
+  }
+}
+new ConstructorExample().testAnonThis()
+//anonThis is the window object?: true
+</code></pre>
+<h2>
+  Why do <code>function</code>-based anonymous functions have <code>this === window</code>?
+</h2>
+
+<p>
+  JavaScript assigns context very late. As mentioned before, the assignment of this in an
+  anonymous function does not obey lexical scoping.
+  Some see it as a strength, because you can
+  reuse functions and keep things lean, while others call it unintuitive and flawed
+  by design.
+</p>
+
+<h2>
+  Arrow functions have no <code>this</code>
+</h2>
+
+<p>
+  So important to understand, that it hurts. I need to explicitly state it:
+</p>
+
+<quote>
+  functions assigned using <code>function</code> have a context automatically asigned: (<code>this</code>).
+  Arrow function do not have a <code>this</code>
+</quote>
+
+<h2>
+  So how does this apply to React.js?
+</h2>
+
+<p>
+  10 years later, I'm going to explain that original statement.
+</p>
+
+<pre data-codetype="auto"><code>&ltbutton onClick={this.runFunction}/&gt</code></pre>
+This is assigned using <code>function</code>, which has its own context.
+
+<pre data-codetype="auto"><code>&ltbutton onClick={()=> this.runFunction()}/&gt</code></pre>
+this is assigned as an arrow function, which has a <code>this</code> that is
+inherited from the React component class.
+
+<h2>
+  My personal opinion: Just use arrow functions, all the time.
+</h2>
+
+<p>
+  It's important to understand fundamentals. But at the end of the day, the
+  ECMAScript team introduced arrow functions for a very good reason: They
+  make so much sense.
+</p>
+
+<p>
+  In fact, they make sense to the point where you don't even have to know what's
+  going on to use them flawlessly. In my opinion: an incredible strength, but a minor
+  detriment. The future will consist of developers that don't understand fundamentals,
+  such as myself, from 3 months ago. But you will never run into context issues if your
+  event handlers are arrow functions.
+</p>
+
+<h2>
+  Yes, I know I didn't explain how to fix the <code>function</code>-based assignment
+</h2>
+
+<p>
+  Brainless answer: use bind.
+</p>
+
+<pre data-codetype="auto"><code>&ltbutton onClick={this.runFunction.bind(this)}/&gt //proper scope</code></pre>
+
+<p>
+  If I somehow not been talking to myself for the past 7 blog posts and any viewers want to understand
+  this topic, feel free to
+  leave me a comment and I'll go over bind, call, and apply.
+</p>

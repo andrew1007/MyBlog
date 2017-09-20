@@ -12,7 +12,7 @@
   are multiple ways to approach this.
 </p>
 
-<pre data-codetype="auto">
+<pre class="language-javascript">
 <code>import React, { Component } from 'react'
 // ParentComponent props
 // this.props = {
@@ -53,7 +53,7 @@ class UserProfile extends Component {
     Option 1: Pass in each prop individually
 </h2></b>
 
-<pre data-codetype="auto">
+<pre class="language-javascript">
 <code>&ltUserProfile
   birthday={this.props.birthday}
   name={this.props.name}
@@ -75,7 +75,7 @@ class UserProfile extends Component {
   operator on this.props in component
 </h2></b>
 
-<pre data-codetype="auto">
+<pre class="language-javascript">
 <code>//using birthday, name, description, and martialStatus
 &ltUserProfile {...this.props} /&gt</code>
 </pre>
@@ -103,7 +103,7 @@ class UserProfile extends Component {
   the object into the component
 </h2></b>
 
-<pre data-codetype="auto">
+<pre class="language-javascript">
 <code>const { birthday, name, description, martialStatus } = this.props
 const userProfileProps = { birthday, name, description, martialStatus }
 &ltUserProfile {...userProfileProps} /&gt</code>

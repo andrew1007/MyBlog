@@ -28,7 +28,7 @@
   Strict declaration of context
 </h2>
 
-<pre data-codetype="auto"><code>this.myFunction // 'this' is my context, where my 'this' resulting declaration will obey lexical scoping
+<pre class="language-javascript"><code>this.myFunction // 'this' is my context, where my 'this' resulting declaration will obey lexical scoping
 
 function ConstructorExample() {
 
@@ -75,10 +75,10 @@ new ConstructorExample().testAnonThis()
   10 years later, I'm going to explain that original statement.
 </p>
 
-<pre data-codetype="auto"><code>&ltbutton onClick={this.runFunction}/&gt</code></pre>
+<pre class="language-javascript"><code>&ltbutton onClick={this.runFunction}/&gt</code></pre>
 This is assigned using <code>function</code>, which has its own context.
 
-<pre data-codetype="auto"><code>&ltbutton onClick={()=> this.runFunction()}/&gt</code></pre>
+<pre class="language-javascript"><code>&ltbutton onClick={()=> this.runFunction()}/&gt</code></pre>
 this is assigned as an arrow function, which has a <code>this</code> that is
 inherited from the React component class.
 
@@ -108,7 +108,7 @@ inherited from the React component class.
   Brainless answer: use bind.
 </p>
 
-<pre data-codetype="auto"><code>&ltbutton onClick={this.runFunction.bind(this)}/&gt //proper scope</code></pre>
+<pre class="language-javascript"><code>&ltbutton onClick={this.runFunction.bind(this)}/&gt //proper scope</code></pre>
 
 <p>
   If I somehow not been talking to myself for the past 7 blog posts and any viewers want to understand

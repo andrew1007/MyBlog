@@ -43,13 +43,13 @@
     attribute.
 </p>
 
-<pre data-codetype="auto">
+<pre class="language-javascript">
   <code>for (let char of "console.logged character by character") {
     console.log(char);
   }</code>
 </pre>
 
-<pre data-codetype="auto">
+<pre class="language-javascript">
   <code>new String()[Symbol.iterator] ? true : false // true
     new Array()[Symbol.iterator] ? true : false // true
     new Set()[Symbol.iterator] ? true : false // true
@@ -77,7 +77,7 @@
 
 <span style="font-size: large;"><b><a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from" target="_blank">Array.from</a> for objects that have a <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator" target="_blank">Symbol.iterator</a></b></span><br />
 <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from" target="_blank">Array.from</a> is essentially a "mapped" version of what a <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of" target="_blank">for...of loop</a> does.<br />
-<pre data-codetype="auto"><code>Array.from("string") //['s',&nbsp;'t',&nbsp;'r',&nbsp;'i',&nbsp;'n',&nbsp;'g'&nbsp;]
+<pre class="language-javascript"><code>Array.from("string") //['s',&nbsp;'t',&nbsp;'r',&nbsp;'i',&nbsp;'n',&nbsp;'g'&nbsp;]
 Array.from(new Set([1, 1, 3, 4, 5])) //[1,&nbsp;3,&nbsp;4,&nbsp;5&nbsp;] from a set to an array
 
 const sampleMap = new Map()
@@ -89,11 +89,11 @@ Array.from(sampleMap)
 <br />
 <span style="font-size: large;"><b>Objects don't have a <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator" target="_blank">Symbol.iterator</a></b></span>
 <br />
-<pre data-codetype="auto"><code>new Object()[Symbol.iterator] ? true : false // false!?
+<pre class="language-javascript"><code>new Object()[Symbol.iterator] ? true : false // false!?
 </code></pre>
 I found this surprising, but it's easy to circumvent and still use <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of" target="_blank">for...of</a> loops using <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys" target="_blank">Object.keys</a>, <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values" target="_blank">Object.values</a>, and <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries" target="_blank">Object.entries</a>.
 <br />
-<pre data-codetype="auto"><code>const sampleObject = {a: 1, b: 2, c: 3}
+<pre class="language-javascript"><code>const sampleObject = {a: 1, b: 2, c: 3}
 Object.values(sampleObject) //[1, 2, 3]
 Object.keys(sampleObject) //['a', 'b', 'c']
 Object.entries(sampleObject) // [ ['a', 1], ['b', 2], ['c', 3] ]
@@ -102,7 +102,7 @@ Object.entries(sampleObject) // [ ['a', 1], ['b', 2], ['c', 3] ]
 <span style="font-size: large;"><b><a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment" target="_blank">Destructure assignment</a> for iterators</b></span><br />
 This is not exclusive to <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of" target="_blank">for...of</a> loops, but it's nice to point out that the ES6 <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment" target="_blank">destructure assignment</a> works on iterators for variable declaration.
 <br />
-<pre data-codetype="auto"><code>const sampleMap = new Map()
+<pre class="language-javascript"><code>const sampleMap = new Map()
 sampleMap.set(1, '1s value').set(2, '2s value').set(3, '3s value')
 for (let [key, val] of sampleMap) {
   console.log(key)
@@ -117,7 +117,7 @@ In its current state with transpilers, ES6 gets outperformed by raw ES5. In some
 </blockquote>
 Before I conclude, let me show you how to create an array of only unique values with the power of ES6:
 <br />
-<pre data-codetype="auto"><code>const sampleArray = [1 , 2, 1, 1, 1, 11]
+<pre class="language-javascript"><code>const sampleArray = [1 , 2, 1, 1, 1, 11]
 Array.from(new Set(sampleArray))
 //or even better, using spread
 [...new Set(sampleArray)]

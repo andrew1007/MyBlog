@@ -60,7 +60,7 @@
   Sounds weird, but it makes sense (I promise).
 </p>
 
-<pre data-codetype="auto">
+<pre class="language-javascript">
   <code>[] === [] //false
 [] instanceof Object // true
 new String("") === new String("") //false
@@ -78,7 +78,7 @@ new String("") instanceof Object //true
   language that does equality by reference, so it's unfair to hold it against the language.
 </p>
 
-<pre data-codetype="auto">
+<pre class="language-javascript">
   <code>a = [] // empty array in one memory address
 b = [] // another empty array in another memory address
 a === a //true, same array in memory
@@ -96,7 +96,7 @@ a === [] //false, new array instantiated that is obviously not the same as a</co
     ES6 to the rescue: <code>Number.isNaN</code> (yes they are different). No exceptions.
     There are some wild algorithms that existed to test true <code>NaN</code> equality with no exceptions, but now it's much simpler:
 </p>
-<pre data-codetype="auto">
+<pre class="language-javascript">
   <code>const equalityTestNaN = (num1, num2) => {
   return Number.isNaN(num1) && Number.isNaN(num2)
 }</code>
@@ -109,6 +109,6 @@ a === [] //false, new array instantiated that is obviously not the same as a</co
   Just remember that this comparator tests for any type.
 </p>
 
-<pre data-codetype="auto">
+<pre class="language-javascript">
   <code>Object.is(NaN, NaN) //true</code>
 </pre>

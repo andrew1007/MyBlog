@@ -2,7 +2,7 @@
   Make an array have only unique values
 </h2>
 
-<pre data-codetype="auto">
+<pre class="language-javascript">
 <code>
   const sampleArray = [1, 1, 1, 1, 1, 32, 2, 1, 4]
   console.log([...new Set(sampleArray)])
@@ -12,7 +12,7 @@
 <h2>
   Concat two arrays
 </h2>
-<pre data-codetype="auto">
+<pre class="language-javascript">
 <code>
 array1 = [1, 3, 4]
 array2 = [4, 52]
@@ -25,7 +25,7 @@ console.log([...array1, ...array2])
   object you're already assigning
 </h2>
 
-<pre data-codetype="auto">
+<pre class="language-javascript">
 <code>
   const obj1 = {a: 1, b: 2, c: 3}
   const obj2 = {d: 4, e: 5}
@@ -39,7 +39,7 @@ console.log([...array1, ...array2])
 <h2>
   Split a string
 </h2>
-<pre data-codetype="auto">
+<pre class="language-javascript">
 <code>
 Array.from("a string to  be split")
 </code>
@@ -48,7 +48,7 @@ Array.from("a string to  be split")
 <h2>
   Array or object deconstruct as arguments
 </h2>
-<pre data-codetype="auto">
+<pre class="language-javascript">
 <code>
 [{a: 2, b: 10}, {a: 3, b: 11}, {a:5, b: 12}]
 .forEach(({a, b}) => console.log(a))
@@ -64,7 +64,7 @@ Array.from("a string to  be split")
 <p>
   Normal objects can only hold strings as keys
 </p>
-<pre data-codetype="auto">
+<pre class="language-javascript">
 <code>
 const key = [1, 2, 3]
 const val = 'key is an array'

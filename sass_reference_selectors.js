@@ -13,7 +13,7 @@
 <b><h2 style="margin-bottom:-17px">
   Sass reference selector syntax
 </h2></b>
-<pre data-codetype="auto">
+<pre class="language-javascript">
 <code>
 .hidden {
   animation-timing-function: cubic-bezier(0.1, 0.8, 0.1, 1.000);
@@ -32,7 +32,7 @@
 <b><h2 style="margin-bottom:-17px">
   Compiles down to CSS
 </h2></b>
-<pre data-codetype="auto">
+<pre class="language-javascript">
 <code>.hidden, .hidden-true, .hidden-false {
   animation-timing-function: cubic-bezier(0.1, 0.8, 0.1, 1);
   transition: opacity 500ms ease-in-out;

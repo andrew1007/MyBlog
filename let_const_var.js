@@ -26,7 +26,7 @@
   reach the line of code that assigns it a value.
 </p>
 
-<pre data-codetype="auto">
+<pre class="language-javascript">
 <code>const undefinedConsoleLog = _ => {
   console.log(sadlyUndefined) //undefined
   var sadlyUndefined = 'declared by var, undefined where I console log'
@@ -44,7 +44,7 @@
   get into trouble in places that seem counterintuitive.
 </p>
 
-<pre data-codetype="auto">
+<pre class="language-javascript">
 <code>const failedResponse = _ => {
   if ('this is a block'){
     let response = 'yes, this is a block'
@@ -69,7 +69,7 @@
   every nested block it contains.
 </p>
 
-<pre data-codetype="auto">
+<pre class="language-javascript">
 <code>const fixedResponse = _ => {
   let response //declared, and then initialized as undefined
   console.log(response) //undefined
@@ -100,7 +100,7 @@
   <b><code>let</code></b> and <b><code>const</code></b> throw an error because they are not initialized.
 </p>
 
-<pre data-codetype="auto">
+<pre class="language-javascript">
 <code>const hoistedAndInitialized = _ => {
   console.log(initializedVar) //undefined
   var initializedVar = 'declared and initialized as undefined on top'
@@ -121,7 +121,7 @@ const hoistedButNotInitialized = _ => {
   stopping you from making the declared block as the entire function.
 </p>
 
-<pre data-codetype="auto">
+<pre class="language-javascript">
 <code>const alwaysFunctionScoped = _ => {
   if ('I use var') {
     var text = 'I am available anywhere in the function'
@@ -149,7 +149,7 @@ const alsoFunctionScoped = _ => {
   They might as well be completely different variable names.
 </p>
 
-<pre data-codetype="auto">
+<pre class="language-javascript">
 <code>const innerTextIsNowBlockScopedAgain = _ => {
   let text
   if ('I declare with let inside this block') {

@@ -19,7 +19,7 @@
     Promise.all
   </a>
   like a synchronous "checkpoint".
-  <pre data-codetype="auto"><code> await Promise.all</code></pre>
+  <pre class="language-javascript"><code> await Promise.all</code></pre>
   It accepts an array of promises and only returns a value after all promises are
   resolved. This means you can pass in promises that are currently running that
   will always resolve before the subsequent lines of code are run.
@@ -29,7 +29,7 @@
   Sample Promises
 </h2></b>
 
-<pre data-codetype="auto">
+<pre class="language-javascript">
 <code>const sendText = text =&gt; {
   return new Promise(function(resolve, reject) {
     setTimeout( _ =&gt; resolve(text), 2000)
@@ -47,7 +47,7 @@ const chainText = (prevText, newText) =&gt; { //relies on value from sendText
   Must be synchronous
 </h2></b>
 
-<pre data-codetype="auto">
+<pre class="language-javascript">
 <code>const chainedPromises = async () => {
   const text = await sendText('Sally')
   const chainedText = await chainText(text, ' loves dogs')
@@ -60,7 +60,7 @@ const chainText = (prevText, newText) =&gt; { //relies on value from sendText
   Needlessly synchronous
 </h2></b>
 
-<pre data-codetype="auto">
+<pre class="language-javascript">
 <code>const allSyncedPromises = async () => {
   const text = await sendText('Sally')
   const otherText = await sendText(' loves dogs') //doesn't rely on the above function
@@ -73,7 +73,7 @@ const chainText = (prevText, newText) =&gt; { //relies on value from sendText
   Parallel, synchronous only when needed
 </h2></b>
 
-<pre data-codetype="auto">
+<pre class="language-javascript">
 <code>const parallelPromises = async () => {
   const text = sendText('Sally')
   const otherText = sendText(' loves dogs')

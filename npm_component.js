@@ -65,7 +65,7 @@
   halts them all. Here are the ones I use.
 </p>
 
-<pre data-codetype="auto">
+<pre class="language-javascript">
   <code>npm run build //transpiles example website and component to ES5
 npm run publish:site //uploads example.js website to your github repo
 npm version <`newversionnum`> //sets new version of package before you

@@ -29,7 +29,7 @@
   Class-based component
 </h2></b>
 
-<pre data-codetype="auto">
+<pre class="language-javascript">
   <code>import React, { Component } from 'react'
     class ProfilePicture extends Component {
       render() {
@@ -48,7 +48,7 @@
   Arrow function component
 </h2></b>
 
-<pre data-codetype="auto">
+<pre class="language-javascript">
   <code>import React from 'react'
     const ProfilePicture = props =&gt; (
       &ltdiv&gt;

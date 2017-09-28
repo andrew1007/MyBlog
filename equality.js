@@ -89,13 +89,16 @@ a === [] //false, new array instantiated that is obviously not the same as a</co
 <b><h2 style="margin-bottom:-5px;margin-top:-20px;">
   Testing equality of NaN: an entire paragraph dedicated to it
 </h2></b>
+
 <p style='margin-bottom:-23px;'>
   <code>NaN</code> is tricky. Strangely enough, <code>NaN</code> is not equal to itself when using
     the equality operators. Which is why <code>isNaN</code> exists, but isNaN has an unintuitive exception:
     the fact that <code>isNaN(undefined) === true</code>.
     ES6 to the rescue: <code>Number.isNaN</code> (yes they are different). No exceptions.
-    There are some wild algorithms that existed to test true <code>NaN</code> equality with no exceptions, but now it's much simpler:
+    There are some wild algorithms that existed to test true <code>NaN</code> equality with
+    no exceptions, but now it's much simpler:
 </p>
+
 <pre class="language-javascript">
   <code>const equalityTestNaN = (num1, num2) => {
   return Number.isNaN(num1) && Number.isNaN(num2)

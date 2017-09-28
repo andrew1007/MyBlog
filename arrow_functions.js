@@ -1,15 +1,17 @@
-<h2>
-  In React.js: <code style='font-size:20px;'>onClick={this.runFunction}</code>
-  &
-  <code style='font-size:20px;'>onClick={() => this.runFunction()}</code>
-  are fundamentally different
-</h2>
+<p>
+  An unintuitive concept, but these are fundamentally different
+</p>
+
+<pre class="language-javascript">
+<code><button onClick={this.runFunction}/>
+//NOT THE SAME
+<button onClick={() => this.runFunction()}/></code>
+</pre>
 
 <p>
-  Is this nerd clickbait? In fairness, I am not full of lies. Try it out yourself later
-  in a component, where
+  Try it out yourself later in a component, where
   <code>this.runFunction</code> uses <code>this.setState</code>. The first will
-  throw an error. The other will not. There's a short explanation and a long one.
+  throw an error. The other will not. Theres a short explanation and a long one.
   To someone who has no idea why these two are different, I think a long explanation
   is in order.
 </p>
@@ -35,13 +37,14 @@ function ConstructorExample() {
   this.testAnonThis = function() { //this.testThis binds this function to my constructor's context
     let anonThis = (function(){
       return this
-    })() //anonymous function. THIS HAS NO BINDING. Remember, function is not lexically scoped.
-    console.log(`anonThis is the window object?: `${window === anonThis}``)
+    })() //anonymous function. THIS HAS NO BINDING. Remember, not lexically scoped.
+    console.log(`anonThis is the window object?: ${window === anonThis}`)
   }
 }
 new ConstructorExample().testAnonThis()
 //anonThis is the window object?: true
 </code></pre>
+
 <h2>
   Why do <code>function</code>-based anonymous functions have <code>this === window</code>?
 </h2>
@@ -78,8 +81,10 @@ new ConstructorExample().testAnonThis()
 <pre class="language-javascript"><code>&ltbutton onClick={this.runFunction}/&gt</code></pre>
 This is assigned using <code>function</code>, which has its own context.
 
-<pre class="language-javascript"><code>&ltbutton onClick={()=> this.runFunction()}/&gt</code></pre>
-this is assigned as an arrow function, which has a <code>this</code> that is
+<pre class="language-javascript">
+  <code>&ltbutton onClick={()=> this.runFunction()}/&gt</code>
+</pre>
+Assigned as an arrow function, which has a <code>this</code> that is
 inherited from the React component class.
 
 <h2>

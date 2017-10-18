@@ -10,15 +10,6 @@ letDeclared = 10 //successfully reassigned
 const constDeclared = 'declare with const'
 constDeclared = 10 //TypeError: Assignment to constant variable.
 
-
-<h2>
-  const can never be reassigned, but can be mutated
-</h2>
-
-const anArray = []
-anArray.push(2)
-console.log(anArray)
-
 <h2>
   Why const is always preferred
 </h2>
@@ -28,3 +19,16 @@ console.log(anArray)
   which is one less thing that programmers have to keep track of. The benefits of this concept
   become more apparent for large scale projects.
 </p>
+
+<h2>
+  But that being said, const values can be mutated
+</h2>
+
+<p>
+  Debateable as to whether or not it's a good idea. Im sure it was easier to program,
+  as Object.freeze works the same way.
+</p>
+
+const anArray = []
+anArray.push(2)
+console.log(anArray)

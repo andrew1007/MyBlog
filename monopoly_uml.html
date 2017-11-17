@@ -1,0 +1,30 @@
+<p>
+  After building so many projects, I decided to look into
+  really good practices. This means unit testing. For
+  funsies, I decided to look into building UMLs for my project.
+  Much to nobody's surprise but mine, it actually helped.
+</p>
+
+<p>
+  A well structured overview of your component
+  and class hierarchy helped me see where my
+  inefficiencies and needed abstractions that
+  were in my code. Certain things should be
+  their own containers, methods should be abstracted out,
+  and all this other good stuff.
+</p>
+
+<p>
+  Some of the things I saw that should've been fixed:
+</p>
+<ul>
+<li>
+  My prompts should be in their own container.
+    Not a direction connection to the board center
+    component
+</li>
+<li>
+  My turn class makes more sense if it has a die, as
+  opposed to my player class have a die.
+</li>
+</ul>

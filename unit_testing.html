@@ -1,0 +1,64 @@
+<p>
+  I recently made the dive to unit testing. Obviously something I should've done ages ago. React.js makes it easy to start off with Jest. Here are some core conepts I learned along the way that are described in the beginners tutorial.
+</p>
+
+<b><h2 style="margin-bottom:-5px">
+  Separation of concerns
+</h2></b>
+
+<p>
+  One test suite should only rely directly on the class (yes, I know real classes don't exist). That means other objects and anything else that was imported should not be used.
+</p>
+
+<p>
+  When a test suite relies on imported files, you now have an interwoven test. Failed tests can now come from two sources. Doesn't that defeat the "unit" part of unit testing?
+</p>
+
+<b><h2 style="margin-bottom:-5px">
+  Mocking
+</h2></b>
+
+<p>
+  A job of a test is not always to test the final result. It is also used to test the path your code takes. For that, you check for things like whether or not a method has been called or instances of an object have been made. You typically don't test the midway functions in the way they exist in your code. You mock them.
+</p>
+
+<p>
+  Mocks test to see if a function, method, or classes has been created or made an instance of. They typically don't check outputs.
+</p>
+
+<b><h2 style="margin-bottom:-5px">
+  Mocking functions
+</h2></b>
+
+<p>
+  What is a mock? It is a fake copy of a function or class with the same name as an actual function, but without the functionality, or a different one. You're going to use them all the time.
+</p>
+
+<p>
+  Creating a mock is done using the function jest.fn(). A callback is added if you want the function to actually return something.
+</p>
+
+<b><h2 style="margin-bottom:-5px">
+  Mocking classes/modules
+</h2></b>
+
+<p>
+  Mocking classes/modules is essentially the same concept. The obect name and all of its methods are created, but with no functionality. This is done with a mocked import. Mocked imports only exist to test if instances of an class/module is created.
+</p>
+
+<p>
+  jest.mock('../../game/player')
+  import Player from '../../game/player'
+</p>
+
+<b><h2 style="margin-bottom:-5px">
+  DRY up tests with beforeEach
+</h2></b>
+
+<p>
+  Important: Do not reuse the instances of your test to any other test. This may cause unexpected test failures due to unexpected mutations in your instances. But this seems like a lot of reduntant code would be written.
+</p>
+
+<p>
+  beforeEach runs a set of code before every test in the scope below it. Cleans up tests nicely while making tests independent of each other.
+</p>

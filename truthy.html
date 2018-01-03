@@ -1,0 +1,17 @@
+<p>
+  Common uses of conditionals is checking if a key in an object exists. But there is one very important exception: the number zero.
+</p>
+
+<p>
+  Zero is registered as false. Ids start at zero all the time and this has given me some awful bugs in the past. Now I never use "naked" truthy conditionals. I make my own function to handle conditionals.
+</p>
+
+<p>
+  In my opinion (obviously not JavaScript's), the only things that should be falsey are: undefined, null, and false.
+</p>
+
+<pre class="language-javascript">
+  <code>const truthy = (element) => {
+  return element !== undefined && element !== null && element !== false
+}</code>
+</pre>

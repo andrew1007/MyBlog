@@ -12,6 +12,6 @@
 
 <pre class="language-javascript">
   <code>const truthy = (element) => {
-  return element !== undefined && element !== null && element !== false
+  return [undefined, null, false].includes(element)
 }</code>
 </pre>

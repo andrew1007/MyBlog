@@ -1,34 +1,29 @@
 <style>
-    body {
-        background-color: beige;
+    blockquote {
+        font-size: 20px;
     }
-
-    h2 {
-        /* margin-bottom: -5px */
-    }
-
-    .language-javascript {}
 </style>
 
 <body>
     <section>
-        <h2>
+        <h3>
             Bad tests are worse than no tests
-        </h2>
-        <quote>
+        </h3>
+        <blockquote>
             This code should be changed, but that would mean I have to update my tests...
-        </quote>
+        </blockquote>
         <p>
             Testing UI behavior is really hard, and you can get lulled into writing sloppy tests. Sloppy tests are
             unmaintainable and encourage "behavior locking". It's a problem that only grows as time goes on
         </p>
     </section>
     <section>
-        <h2>
-            Testing React components is really hard
-        </h2>
+        <h3>
+            Testing React components is hard
+        </h3>
         <p>
-            Frontend testing requires, in one form or another, a mocked DOM, which is a beast in its own rite. Your tests can't be run like a basic function, because the true test behavior is browser-based. Which is what
+            Frontend testing requires, in one form or another, a mocked DOM, which is a beast in its own rite. Your
+            tests can't be run like a basic function, because the true test behavior is browser-dependent. Which is what
             <a>
                 enzyme
             </a>
@@ -37,6 +32,74 @@
                 jest
             </a>
             for component testing.
+        </p>
+    </section>
+    <section>
+        <h3>
+            Component design matters a lot more than you think
+        </h3>
+        <blockquote>
+            Well designed components are easy to test
+        </blockquote>
+        <p>
+            Spaghetti is easy to right, but hard to test and maintain. Large components also hurt performance, for
+            reasons that can be dove into on another day. Here are the qualities that I value when I design components.
+        </p>
+        <ul>
+            <li>
+                Small components that represent a singular idea
+            </li>
+            <li>
+                Few or no props passed in from parent (flux implementation needed)
+            </li>
+            <li>
+                Minimal business logic
+            </li>
+        </ul>
+    </section>
+    <section>
+        <h3>
+            When you do things the right way, everything just "falls right into place"
+        </h3>
+        <p>
+            These principles that I value make code clean, maintainable, and implies separation of concerns (which
+            vanilla React does a bad job of). Deep dependencies between UI elements and their behavior inside a
+            component is the pain point when it comes to testing
+        </p>
+    </section>
+    <section>
+        <h3>
+            Redux gives us a ecosystem to create separation of concerns
+        </h3>
+        <p>
+            The interface between Redux and React components leverage the DOM, but Redux itself does not. It is its own
+            data flow ecosystem. Redux is the perfect place to abstract out complex behavior, so your component tests
+            don't have to worry about handling it.
+        </p>
+    </section>
+    <section>
+        <h3>
+            Testing advantages of abstracting out business logic
+        </h3>
+        <ul>
+            <li>
+                Fewer mocked functions
+            </li>
+            <li>
+                No spies
+            </li>
+            <li>
+                No value assertions (except for local state)
+            </li>
+            <li>
+                Only render logic needs to be asserted
+            </li>
+        </ul>
+    </section>
+    <section>
+        <p>
+            Starting to sound pretty nice, right?
+            Well, sit tught. I'll get to it on another day
         </p>
     </section>
 </body>

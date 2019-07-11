@@ -1,4 +1,7 @@
 <body>
+    <h2>
+
+    </h2>
     <section>
         <h3>
             My approach to component testing
@@ -152,7 +155,10 @@ describe('component', () => {
             instead of spying
         </h3>
         <h4>
-            You can only assert function calls for spies and mocks
+            You can only assert function calls for spies and mocks, which is a bad thing for
+            <code>
+                setState
+            </code>
         </h4>
         <p>
             You destroy the behavior of
@@ -174,6 +180,10 @@ describe('component', () => {
             has the expected behavior
             <pre>
                 <code>
+// component click handler
+openMenu = () => this.setState({ openMenu: true })
+
+// test
 it('opens the menu when clicked', () => {
     const dropdownButton = wrapper.find(DropdownButton).at(0)
     dropdownButton.simulate('click')

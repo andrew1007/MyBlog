@@ -26,7 +26,7 @@
             </li>
         </ul>
         <p>
-            As a consequence, my tests have the following principles, which I will go over in depth
+            As a consequence, my tests have the following principles
         </p>
         <ul>
             <li>
@@ -108,6 +108,25 @@
         <p>
             Once you get into the testing groove, it is quick and concise to create.
         </p>
+        <pre>
+            <code>
+// component click handler
+handleLogOut = () => {
+    this.props.destroyLogOutUser()
+}
+
+// test
+const destroyLogOutUser = jest.fn()
+const wrappper = shallow(&ltLogOut destroyLogOutUser={destroyLogOutUser}/&gt)
+describe('component', () => {
+    it('logs user out when clicked', () => {
+        const menuItem = wrapper.find(MenuItem)
+        menuItem.simulate('click')
+        expect(destroyLogOutUser).toHaveBeenCalled()
+    })
+})
+            </code>
+        </pre>
     </section>
     <section>
         <h3>
@@ -133,14 +152,14 @@
             instead of spying
         </h3>
         <h4>
-            You can only assert spies and mocks
+            You can only assert function calls for spies and mocks
         </h4>
         <p>
             You destroy the behavior of
             <code>
                 setState
             </code>
-            in order to check if it has been called. A catch 20/20. Instead, keep
+            in order to check if it has been called. But how can you have the function perform its operation if it has been mocked? A catch 20/20. Instead, keep
             <code>
                 setState
             </code>
@@ -148,7 +167,20 @@
             <code>
                 this.state
             </code>
-            changes after the function is run
+            changes after the function is run. You are indirectly testing to see if the call to
+            <code>
+                setState
+            </code>
+            has the expected behavior
+            <pre>
+                <code>
+it('opens the menu when clicked', () => {
+    const dropdownButton = wrapper.find(DropdownButton).at(0)
+    dropdownButton.simulate('click')
+    expect(wrapper.instance().state.openMenu).toEqual(true)
+})
+                </code>
+            </pre>
         </p>
     </section>
 </body>

@@ -1,0 +1,154 @@
+<body>
+    <section>
+        <h3>
+            My approach to component testing
+        </h3>
+        <p>
+            There are multiple resources that show how to test components. When you read between the lines, they are actually describing their philosophy on how a component should be tested. 
+        </p>
+    </section>
+    <section>
+        <h3>
+            My tests are basic and practical because my components are dumb
+        </h3>
+        <p>
+            My components have the following properties
+        </p>
+        <ul>
+            <li>
+                No api calls
+            </li>
+            <li>
+                Small encapsulated components
+            </li>
+            <li>
+                No complex sequence of redux actions
+            </li>
+        </ul>
+        <p>
+            As a consequence, my tests have the following principles, which I will go over in depth
+        </p>
+        <ul>
+            <li>
+                Shallow mount component directly. Ignore Redux's
+                <code>
+                    connect
+                </code>
+                higher order function (HOF) in test
+            </li>
+            <li>
+                <code>
+                    simulate
+                </code>
+                interaction of ui elements and assert internal behavior of the event handler
+            </li>
+            <li>
+                Use
+                <code>
+                    setProps
+                </code>
+                to change props (even redux store props), because I exclude the
+                <code>
+                    connect
+                </code>
+                HOF
+            </li>
+            <li>
+                Don't test to see if
+                <code>
+                    setState
+                </code>
+                was called. Indirectly check by asserting value changes in
+                <code>
+                    this.state
+                </code>
+                to confirm
+            </li>
+        </ul>
+    </section>
+    <section>
+        <h3>
+            Shallow mount component directly
+        </h3>
+        <p>
+            A consequence of my practical approach to unit testing.
+        </p>
+        <h4>
+            Mounting with HOFs greatly increases complexity and does not provide substantial benefits
+        </h4>
+        <p>
+            Incorporating HOFs into your unit tests makes them more finnicky and extremely verbose. From a technical perspective, including HOFs is more reflective of runtime behavior. But what exactly are you <i>testing</i> by doing so? What else is there aside from confirming that
+            <code>
+                connect
+            </code>
+            works? I don't see value in the huge complexity jump that HOFs add when it comes to unit testing.
+        </p>
+    </section>
+    <section>
+        <h3>
+            Assert interntal behavior of an event handler callback. Not the callback itself
+        </h3>
+        <h4>
+            You don't need spies if you do it this way
+        </h4>
+        <p>
+            Having the event handler method run is not important. What <i>is</i> important is the internal behavior. If you
+            <code>
+                simulate
+            </code>
+            user input and it runs everything inside your handler method, doesn't that already imply the event handler was run?
+        </p>
+        <h4>
+            Using
+            <code>
+                jest.fn
+            </code>
+            to mock functions is easy
+        </h4>
+        <p>
+            Once you get into the testing groove, it is quick and concise to create.
+        </p>
+    </section>
+    <section>
+        <h3>
+            Use
+            <code>
+                setProps
+            </code>
+            for all props. Even Redux store props
+        </h3>
+        <h4>
+            Mocks behavior, but Redux store data is coming from an improper source
+        </h4>
+        <p>
+            A consequence of directly testing the dumb component. I can see merit to anyone who takes issues to this concept. As said before, I do this because it is practical while still asserting what I'm actually testing.
+        </p>
+    </section>
+    <section>
+        <h3>
+            Test consequences of the function calling
+            <code>
+                setState
+            </code>
+            instead of spying
+        </h3>
+        <h4>
+            You can only assert spies and mocks
+        </h4>
+        <p>
+            You destroy the behavior of
+            <code>
+                setState
+            </code>
+            in order to check if it has been called. A catch 20/20. Instead, keep
+            <code>
+                setState
+            </code>
+            intact and test how
+            <code>
+                this.state
+            </code>
+            changes after the function is run
+        </p>
+    </section>
+</body>

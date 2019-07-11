@@ -12,7 +12,7 @@
             <a>
                 redux
             </a>
-            is so functionality-rich with a huge open source community back it. I use the features you get from redux to keep my components virtually free of business logic.
+            is so functionality-rich with a huge open source community that backs it. I use the features you get from redux to keep my components virtually free of business logic.
         </p>
     </section>
     <section>
@@ -78,8 +78,7 @@ const processHomeMount: types.processHomeMount = () =>
             dispatch(fetchPopularSearches({ type, limit: TOP_SEARCH_ENTRY_COUNT })),
             dispatch(fetchNews({ startDate, endDate }))
         } catch (error) {
-            const exception = new ActionProcessError({ error, functionName: processHomeMount.name })
-            exception.print()
+            throw new Error(error)
         }
     }
             </code>
@@ -126,7 +125,7 @@ const processHomeMount = jest.fn()
 let wrapper
 describe('<Home />', () => {
     beforeEach(() => {
-        wrapper = shallow(<Home processHomeMount={processHomeMount}/>)
+        wrapper = shallow(&ltHome processHomeMount={processHomeMount}/&gt)
     })
     describe('componentDidMount', () => {
         it('invokes home initialization process', () => {
@@ -142,7 +141,7 @@ describe('<Home />', () => {
     </section>
     <section>
         <h3>
-            Ok, but what about the unit test for
+            Ok, but what about the unit test for the Redux action
             <code>
                 processHomeMount
             </code>

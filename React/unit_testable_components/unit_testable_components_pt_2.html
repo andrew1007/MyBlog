@@ -1,0 +1,155 @@
+<body>
+    <section>
+        <h3>
+            Use global state management, like Redux
+        </h3>
+        <p>
+            Production size codebases are completely unmaintainable if local state is exclusively used. Don't even try. React +16.3 introduced their own global state management system, called the
+            <a>
+                context api.
+            </a>
+            But even then, I find it to be lacking base functionality. I don't find reinventing the wheel to be a good idea when 
+            <a>
+                redux
+            </a>
+            is so functionality-rich with a huge open source community back it. I use the features you get from redux to keep my components virtually free of business logic.
+        </p>
+    </section>
+    <section>
+        <h3>
+            Thunk is the only middleware you truly need
+        </h3>
+        <p>
+            There is a lot of middleware out there, but I find
+            <a>
+                thunk
+            </a>
+            to be more than adequate for my needs
+        </p>
+    </section>
+    <section>
+        <h3>
+            Actions within actions: abstracting and minizming business logic in components
+        </h3>
+        <p>
+            Run one action inside the component, and have the action perform many operations inside it.
+        </p>
+        <pre>
+            <code class="language-javascript">
+export class Home extends React.Component {
+    static whyDidYouRender: boolean
+
+    componentDidMount() {
+        this.props.processHomeMount()
+    }
+
+    render() {
+        return (
+            &ltdiv&gt
+                &ltShowOfTheDay /&gt
+                &ltPopularSearches /&gt
+                &ltNews /&gt
+            &lt/div&gt
+        )
+    }
+
+    const mapDispatchToProps = { processHomeMount }
+
+    export default connect(
+        () => ({}), mapDispatchToProps
+    )(Home)
+}
+            </code>
+        </pre>
+        <p>
+            That's it. But what does the redux action 
+            <code>
+                processHomeMount
+            </code>
+            do?
+        </p>
+        <pre>
+            <code>
+const processHomeMount: types.processHomeMount = () =>
+    async (dispatch, getState) => {
+        try {
+            const type = getState().home.topSearches.focusedDateRange
+            const { endDate, startDate } = createPresentDateRange({ daysAgo: 100 })
+            dispatch(fetchPopularSearches({ type, limit: TOP_SEARCH_ENTRY_COUNT })),
+            dispatch(fetchNews({ startDate, endDate }))
+        } catch (error) {
+            const exception = new ActionProcessError({ error, functionName: processHomeMount.name })
+            exception.print()
+        }
+    }
+            </code>
+        </pre>
+        <ul>
+            <li>
+                gets a value from redux store
+            </li>
+            <li>
+                creates two sets of dates to be used as params in one of the api calls
+            </li>
+            <li>
+                dispatches two actions that make API calls with a lot of business logic inside each
+            </li>
+            <li>
+                includes try/catch error handling
+            </li>
+        </ul>
+        The two inner actions
+        <code>
+            fetchPopularSearches
+        </code>
+        and
+        <code>
+            fetchNews
+        </code>
+        are entirely different beasts on their own that also contain api calls and algorithmic logic as well 
+    </section>
+    <section>
+        <h3>
+            What does our business logic test look like for our
+            <code>
+                &ltHome /&gt
+            </code>
+            component?
+        </h3>
+        <pre>
+            <code>
+// Home.test.jsx
+import { shallow } from 'enzyme'
+
+const processHomeMount = jest.fn()
+
+let wrapper
+describe('<Home />', () => {
+    beforeEach(() => {
+        wrapper = shallow(<Home processHomeMount={processHomeMount}/>)
+    })
+    describe('componentDidMount', () => {
+        it('invokes home initialization process', () => {
+            expect(processHomeMount).toBeCalled()
+        })
+    })
+})
+            </code>
+        </pre>
+    <p>
+        Yes, that's it
+    </p>
+    </section>
+    <section>
+        <h3>
+            Ok, but what about the unit test for
+            <code>
+                processHomeMount
+            </code>
+            ?
+        </h3>
+        <p>
+            It's not pretty. But it's easier than trying to do all of it inside a component. An answer for part 3.
+        </p>
+    </section>
+</body>

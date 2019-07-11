@@ -1,0 +1,42 @@
+<style>
+    body {
+        background-color: beige;
+    }
+
+    h2 {
+        /* margin-bottom: -5px */
+    }
+
+    .language-javascript {}
+</style>
+
+<body>
+    <section>
+        <h2>
+            Bad tests are worse than no tests
+        </h2>
+        <quote>
+            This code should be changed, but that would mean I have to update my tests...
+        </quote>
+        <p>
+            Testing UI behavior is really hard, and you can get lulled into writing sloppy tests. Sloppy tests are
+            unmaintainable and encourage "behavior locking". It's a problem that only grows as time goes on
+        </p>
+    </section>
+    <section>
+        <h2>
+            Testing React components is really hard
+        </h2>
+        <p>
+            Frontend testing requires, in one form or another, a mocked DOM, which is a beast in its own rite. Your tests can't be run like a basic function, because the true test behavior is browser-based. Which is what
+            <a>
+                enzyme
+            </a>
+            was created for. It's a mandatory supplement to
+            <a>
+                jest
+            </a>
+            for component testing.
+        </p>
+    </section>
+</body>

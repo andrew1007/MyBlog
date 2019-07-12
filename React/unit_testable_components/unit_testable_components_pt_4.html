@@ -3,25 +3,29 @@
         Testing actions within actions
     </h3>
     <p>
-        It's very length, and sometimes difficult, but it doesn't matter where you do it. It will always be challenging. The difference here is that
-        <code>
-            enzyme
-        </code>
-        and
-        <code>
-            shallow
-        </code>
-        mocking of the DOM has nothing to do with these tests. Here is what a sample test would look like
+        Testing actions is length, and sometimes difficult, but it doesn't matter where you do it. It will always be
+        challenging. The difference here is that the DOM is irrelevant for these tests. 
     </p>
-<section>
-    <h3>
-        Sample test file
-    </h3>
+    <p>
+        I use
+        <a href="https://www.npmjs.com/package/redux-mock-store" target="_blank">
+            redux-mock-store
+        </a>
+        to test my actions. No need for
+        <a href="https://airbnb.io/enzyme/" target="_blank">
+            enzyme.
+        </a>
+        One less moving part to deal with. Here is what a sample test would look like
+    </p>
     <section>
-        <h4>
-            Imports
-        </h4>
-        <pre>
+        <h3>
+            Sample test file
+        </h3>
+        <section>
+            <h4>
+                Imports
+            </h4>
+            <pre>
             <code>
 // middleware to be passed into mocked store
 import thunk from 'redux-thunk'
@@ -34,18 +38,18 @@ import {
 } from "Api/ApiCalls/HomeApi/HomeApi"
             </code>
         </pre>
-    </section>
-    <section>
-        <h4>
-            Mocks
-        </h4>
-        <pre>
+        </section>
+        <section>
+            <h4>
+                Mocks
+            </h4>
+            <pre>
             <code>
 // mock the functions so I can use returnValueOnce
 jest.mock('Api/ApiCalls/HomeApi/HomeApi')
 
 // api call return value mock
-getPopularSearches.returnValueOnce(popularsearchesPayload)
+getPopularSearches.returnValueOnce(popularSearchesPayload)
 getNews.returnValueOnce(newsPayload)
 
 // setting up my mock store that dispatches actions and keeps track of emitted actions
@@ -54,14 +58,13 @@ const middleware = [thunk]
 const mockStore = configureStore(middleware)(initialState)
             </code>
         </pre>
-    </section>
-    <section>
-        <h4>
-            Assertion
-        </h4>
-        <pre>
+        </section>
+        <section>
+            <h4>
+                Assertion
+            </h4>
+            <pre>
             <code>
-// this is truncated for brevity
 const processHomeMountExpectedActions = [
     {
         news: [{
@@ -85,33 +88,32 @@ const processHomeMountExpectedActions = [
 
 describe('processHomeMount', () => {
     beforeEach(() => {
-        mockStore.clearActions()
+        mockStore.clearActions() // remove all actions from mockStore before each assertion in test file
     })
     it('dispatches expected objects', () => {
         mockStore.dispatch(processHomeMount())
-        // array of all actions run. remember to clear after each test
-        const emittedActions = mockStore.getActions()
+        const emittedActions = mockStore.getActions() // array of all actions run
         expect(emittedActions).toEqual(processHomeMountExpectedActions)
     })
 })
             </code>
         </pre>
+        </section>
     </section>
-</section>
-<section>
-    <h3>
-        All done
-    </h3>
-    <p>
-        There you have it. Test Redux and React components in its own encapsulated environments. Independently use
-        <code>
+    <section>
+        <h3>
+            All done
+        </h3>
+        <p>
+            There you have it. Test Redux and React components in their own respective environments. Independently use
+            <code>
             enzyme
         </code>
-        to test components and
-        <code>
+            to test components and
+            <code>
             redux-mock-store
         </code>
-        for your business logic. Not both at once.
-    </p>
-</section>
+            for your business logic. Not both at once.
+        </p>
+    </section>
 </body>

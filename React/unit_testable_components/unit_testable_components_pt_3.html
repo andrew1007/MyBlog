@@ -22,7 +22,7 @@
                 Small encapsulated components
             </li>
             <li>
-                No complex sequence of redux actions
+                Minimal Redux actions
             </li>
         </ul>
         <p>
@@ -54,15 +54,14 @@
                 HOF
             </li>
             <li>
-                Don't test to see if
+                Indirectly test usage of
                 <code>
                     setState
                 </code>
-                was called. Indirectly check by asserting value changes in
+                by asserting value changes in
                 <code>
                     this.state
                 </code>
-                to confirm
             </li>
         </ul>
     </section>
@@ -106,18 +105,18 @@
             to mock functions is easy
         </h4>
         <p>
-            Once you get into the testing groove, it is quick and concise to create.
+            Once you get into the testing groove, it is quick and concise to create mocks.
         </p>
         <pre>
             <code>
-// component click handler
+// component file: button's click handler
 handleLogOut = () => {
     this.props.destroyLogOutUser()
 }
 
-// test
+// test file
 const destroyLogOutUser = jest.fn()
-const wrappper = shallow(&ltLogOut destroyLogOutUser={destroyLogOutUser}/&gt)
+const wrapper = shallow(&ltLogOut destroyLogOutUser={destroyLogOutUser}/&gt)
 describe('component', () => {
     it('logs user out when clicked', () => {
         const menuItem = wrapper.find(MenuItem)
@@ -140,7 +139,7 @@ describe('component', () => {
             Mocks behavior, but Redux store data is coming from an improper source
         </h4>
         <p>
-            A consequence of directly testing the dumb component. I can see merit to anyone who takes issues to this concept. As said before, I do this because it is practical while still asserting what I'm actually testing.
+            A consequence of directly testing the dumb component. I can see merit to anyone who takes issues to this concept. As said before, I do this because it is practical. Ultimately, it is still mocking the data that is necessary to test functionality.
         </p>
     </section>
     <section>
@@ -149,7 +148,7 @@ describe('component', () => {
             <code>
                 setState
             </code>
-            instead of spying
+            instead of spying it
         </h3>
         <h4>
             You can only assert function calls for spies and mocks
@@ -175,7 +174,7 @@ describe('component', () => {
             <pre>
                 <code>
 it('opens the menu when clicked', () => {
-    const dropdownButton = wrapper.find(DropdownButton).at(0)
+    const dropdownButton = wrapper.find('button')
     dropdownButton.simulate('click')
     expect(wrapper.instance().state.openMenu).toEqual(true)
 })

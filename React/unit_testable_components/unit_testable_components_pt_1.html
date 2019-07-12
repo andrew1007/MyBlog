@@ -1,20 +1,23 @@
 <style>
     blockquote {
-        font-size: 20px;
+        font-size: 16px;
     }
 </style>
 
 <body>
+    <h2>
+        Unit testable components pt.1: Overview
+    </h2>
     <section>
         <h3>
             Bad tests are worse than no tests
         </h3>
         <blockquote>
-            This code should be changed, but that would mean I have to update my tests...
+            This code should be changed or refactored, but that would mean I have to update my tests...
         </blockquote>
         <p>
             Testing UI behavior is really hard, and you can get lulled into writing sloppy tests. Sloppy tests are
-            unmaintainable and encourage "behavior locking". It's a problem that only grows as time goes on
+            unmaintainable and encourage "behavior locking". It's a problem that only grows as time goes on.
         </p>
     </section>
     <section>
@@ -23,12 +26,12 @@
         </h3>
         <p>
             Frontend testing requires, in one form or another, a mocked DOM, which is a beast in its own rite. Your
-            tests can't be run like a basic function, because the true test behavior is browser-dependent. Which is what
-            <a>
+            tests can't be run like a basic function, because the true environment is the browser. Which is what
+            <a href="https://airbnb.io/enzyme/" target="_blank">
                 enzyme
             </a>
             was created for. It's a mandatory supplement to
-            <a>
+            <a href="https://jestjs.io/" target="_blank"></a>
                 jest
             </a>
             for component testing.
@@ -63,18 +66,16 @@
         </h3>
         <p>
             These principles that I value make code clean, maintainable, and implies separation of concerns (which
-            vanilla React does a bad job of). Deep dependencies between UI elements and their behavior inside a
-            component is the pain point when it comes to testing
+            vanilla React does a bad job of). Deep dependencies between UI elements and their resulting behavior inside a
+            component is the pain point when it comes to testing. It is advantageous to minimize it.
         </p>
     </section>
     <section>
         <h3>
-            Redux gives us a ecosystem to create separation of concerns
+            Redux gives us an ecosystem to create separation of concerns
         </h3>
         <p>
-            The interface between Redux and React components leverage the DOM, but Redux itself does not. It is its own
-            data flow ecosystem. Redux is the perfect place to abstract out complex behavior, so your component tests
-            don't have to worry about handling it.
+            Redux is its own data flow ecosystem. Its algorithmic operations have nothing to do with the DOM. The only job of flux is to feed data to components, making it the perfect place to abstract out complex behavior. The answer is 
         </p>
     </section>
     <section>
@@ -83,13 +84,13 @@
         </h3>
         <ul>
             <li>
-                Fewer mocked functions
+                Very few mocked functions (one or two, at most)
             </li>
             <li>
                 No spies
             </li>
             <li>
-                No value assertions (except for local state)
+                No value assertions of actions or api calls (except for local state and render logic)
             </li>
             <li>
                 Only render logic needs to be asserted
@@ -99,7 +100,7 @@
     <section>
         <p>
             Starting to sound pretty nice, right?
-            Well, sit tught. I'll get to it on another day
+            Well, sit tight. I'll get to it in pt.2
         </p>
     </section>
 </body>

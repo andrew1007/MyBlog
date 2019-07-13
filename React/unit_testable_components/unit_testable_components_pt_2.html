@@ -1,15 +1,20 @@
+<style>
+    body {
+        background-color: grey
+    }
+</style>
 <body>
     <section>
         <h3>
             Use global state management, like Redux
         </h3>
         <p>
-            Production size codebases are completely unmaintainable if local state is exclusively used. Don't even try. React +16.3 introduced their own global state management system, called the
-            <a>
+            Production size codebases are completely unmaintainable if local component state is exclusively used. Don't even try. React +16.3 introduced their own global state management system, the
+            <a href="https://reactjs.org/docs/context.html" target="_blank">
                 context api.
             </a>
-            But even then, I find it to be lacking base functionality. I don't find reinventing the wheel to be a good idea when 
-            <a>
+            But even then, I find it to be lacking base functionality. If you want those niceties, I don't you should reinvent the wheel when 
+            <a href="https://react-redux.js.org/" target="_blank">
                 redux
             </a>
             is so functionality-rich with a huge open source community that backs it. I use the features you get from redux to keep my components virtually free of business logic.
@@ -17,7 +22,7 @@
     </section>
     <section>
         <h3>
-            Thunk is the only middleware you truly need
+            Thunk is the only Redux middleware you truly need
         </h3>
         <p>
             There is a lot of middleware out there, but I find
@@ -29,7 +34,7 @@
     </section>
     <section>
         <h3>
-            Actions within actions: abstracting and minizming business logic in components
+            Actions within actions: abstracting and minimizing business logic in components
         </h3>
         <p>
             Run one action inside the component, and have the action perform many operations inside it.
@@ -94,7 +99,7 @@ const processHomeMount: types.processHomeMount = () =>
                 dispatches two actions that make API calls with a lot of business logic inside each
             </li>
             <li>
-                includes try/catch error handling
+                try/catch error handling
             </li>
         </ul>
         The two inner actions
@@ -141,14 +146,10 @@ describe('<Home />', () => {
     </section>
     <section>
         <h3>
-            Ok, but what about the unit test for the Redux action
-            <code>
-                processHomeMount
-            </code>
-            ?
+            My component testing philosophy
         </h3>
         <p>
-            It's not pretty. But it's easier than trying to do all of it inside a component. An answer for part 3.
+            An explanation for part 3.
         </p>
     </section>
 </body>

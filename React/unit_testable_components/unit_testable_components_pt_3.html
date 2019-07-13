@@ -120,6 +120,7 @@ handleLogOut = () => {
 // test file
 const destroyLogOutUser = jest.fn()
 const wrapper = shallow(&ltLogOut destroyLogOutUser={destroyLogOutUser}/&gt)
+
 describe('component', () => {
     it('logs user out when clicked', () => {
         const menuItem = wrapper.find(MenuItem)
@@ -190,6 +191,11 @@ it('opens the menu when clicked', () => {
 })
                 </code>
             </pre>
+        </p>
+    </section>
+    <section>
+        <p>
+            Next step is discussing how to test Redux actions. Something to discuss in part 4.
         </p>
     </section>
 </body>

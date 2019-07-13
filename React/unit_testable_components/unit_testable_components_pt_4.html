@@ -3,8 +3,7 @@
         Testing actions within actions
     </h3>
     <p>
-        Testing actions is length, and sometimes difficult, but it doesn't matter where you do it. It will always be
-        challenging. The difference here is that the DOM is irrelevant for these tests. 
+        Testing redux is verbose. Sometimes it is even difficult. But it doesn't matter where you do it. It will always be challenging. The difference is that the DOM is irrelevant for these tests.
     </p>
     <p>
         I use
@@ -15,12 +14,18 @@
         <a href="https://airbnb.io/enzyme/" target="_blank">
             enzyme.
         </a>
-        One less moving part to deal with. Here is what a sample test would look like
+        One less moving part to deal with. That is the whole point of this testing style. Here is what a sample test would look like
     </p>
     <section>
         <h3>
             Sample test file
         </h3>
+        <p>
+            If you want to see the action this example is testing, refer to
+            <a>
+                part 2
+            </a>
+        </p>
         <section>
             <h4>
                 Imports
@@ -88,7 +93,8 @@ const processHomeMountExpectedActions = [
 
 describe('processHomeMount', () => {
     beforeEach(() => {
-        mockStore.clearActions() // remove all actions from mockStore before each assertion in test file
+        // remove all actions from mockStore before each assertion in test file
+        mockStore.clearActions() 
     })
     it('dispatches expected objects', () => {
         mockStore.dispatch(processHomeMount())
@@ -105,14 +111,14 @@ describe('processHomeMount', () => {
             All done
         </h3>
         <p>
-            There you have it. Test Redux and React components in their own respective environments. Independently use
+            There you have it. Test Redux and React components in their own respective environments. Use
             <code>
-            enzyme
-        </code>
+                enzyme
+            </code>
             to test components and
             <code>
-            redux-mock-store
-        </code>
+                redux-mock-store
+            </code>
             for your business logic. Not both at once.
         </p>
     </section>
